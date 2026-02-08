@@ -1,6 +1,5 @@
 package com.interstellar.interstellarstudy01.product.service;
 
-import com.interstellar.interstellarstudy01.product.domain.ProductEntity;
 import com.interstellar.interstellarstudy01.product.repository.ProductRepository;
 import com.interstellar.interstellarstudy01.product.service.dto.ProductsSearchCriteria;
 import com.interstellar.interstellarstudy01.product.service.dto.ProductsSearchResult;
