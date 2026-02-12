@@ -3,6 +3,7 @@ package com.interstellar.interstellarstudy01.product.service.dto;
 import com.interstellar.interstellarstudy01.product.constant.ProductStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
@@ -12,6 +13,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
 public class ProductsSearchResult {
     Integer totalCount;
     List<Product> productList;
@@ -19,6 +21,7 @@ public class ProductsSearchResult {
     @Builder
     @AllArgsConstructor
     @NoArgsConstructor
+    @Getter
     public static class Product {
         Long productId;
         String title;

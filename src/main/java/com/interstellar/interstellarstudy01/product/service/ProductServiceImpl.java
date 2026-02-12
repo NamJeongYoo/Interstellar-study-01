@@ -29,7 +29,7 @@ public class ProductServiceImpl implements ProductService {
 
         // 3. 엔티티 -> DTO 변환
         return ProductsSearchResult.builder()
-                .totalCount(productPage.getSize())
+                .totalCount((int) productPage.getTotalElements())
                 .productList(productPage.getContent().stream()
                         .map(productMapper::toProduct)
                         .toList())

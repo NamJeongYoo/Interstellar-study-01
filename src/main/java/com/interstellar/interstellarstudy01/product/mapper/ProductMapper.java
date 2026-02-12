@@ -10,7 +10,7 @@ import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
 public interface ProductMapper {
-    @Mapping(target = "pageable", expression = "java(request.toPageable)")
+    @Mapping(target = "pageable", expression = "java(request.toPageable())")
     ProductsSearchCriteria toProductsSearchCriteria(ProductsSearchRequest request);
 
     ProductsSearchResponse toProductsSearchResponse(ProductsSearchResult result);
