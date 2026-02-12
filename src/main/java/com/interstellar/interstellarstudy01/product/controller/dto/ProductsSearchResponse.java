@@ -1,6 +1,5 @@
 package com.interstellar.interstellarstudy01.product.controller.dto;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -9,14 +8,14 @@ public record ProductsSearchResponse(
         List<Product> productList
 ) {
     public record Product(
-            long productId,
+            Long productId,
             String title,
             LocalDateTime startedAt,
             LocalDateTime finishedAt,
-            int investCount,
+            Integer investCount,
             String status,
-            BigDecimal currentInvestingAmount,
-            BigDecimal totalInvestingAmount
+            Long currentInvestingAmount,
+            Long totalInvestingAmount
     ) {
 
     }

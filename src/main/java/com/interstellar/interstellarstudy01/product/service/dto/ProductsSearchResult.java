@@ -6,7 +6,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -29,7 +28,7 @@ public class ProductsSearchResult {
         LocalDateTime finishedAt;
         Integer investCount;
         ProductStatus status;
-        BigDecimal currentInvestingAmount;
-        BigDecimal totalInvestingAmount;
+        Long currentInvestingAmount;
+        Long totalInvestingAmount;
     }
 }
