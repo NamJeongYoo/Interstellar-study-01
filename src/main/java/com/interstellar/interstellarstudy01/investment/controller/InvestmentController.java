@@ -8,6 +8,7 @@ import com.interstellar.interstellarstudy01.investment.service.dto.InvestmentCri
 import com.interstellar.interstellarstudy01.investment.service.dto.InvestmentResult;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +28,6 @@ public class InvestmentController {
              @RequestBody @Valid InvestmentRequest request) {
         InvestmentCriteria criteria = investmentMapper.toInvestmentCriteria(userId, request);
         InvestmentResult result = investmentService.doInvestment(criteria);
-        return ResponseEntity.ok(investmentMapper.toInvestmentResponse(result));
+        return ResponseEntity.status(HttpStatus.CREATED).body(investmentMapper.toInvestmentResponse(result));
     }
 }

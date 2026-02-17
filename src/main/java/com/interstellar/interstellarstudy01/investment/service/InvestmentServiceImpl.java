@@ -28,13 +28,14 @@ public class InvestmentServiceImpl implements InvestmentService {
 
         // 2. 투자 가능 여부 검증
         if (product.getStatus() == ProductStatus.SOLD_OUT) {
-            // 이미 모집이 완료된 상품입니다.
+            throw new RuntimeException("이미 모집이 완료된 상품입니다.");
         }
 
         long expectedAmount = product.getCurrentInvestingAmount() + criteria.getInvestingAmount();
 
         if (expectedAmount > product.getTotalInvestingAmount()) {
             // 총 투자 모집 금액을 초과할 수 없습니다.
+            throw new RuntimeException("총 투자 모집 금액을 초과할 수 없습니다.");
         }
 
         // 3. 투자 내역 저장
@@ -47,8 +48,12 @@ public class InvestmentServiceImpl implements InvestmentService {
         investmentRepository.save(investment);
 
         // 4. 상품 정보 업데이트 (Dirty Checking 활용)
+        product.updateInvestingInfo(criteria.getInvestingAmount());
 
         // 5. 완판 처리 체크
+        if (product.getCurrentInvestingAmount().equals(product.getTotalInvestingAmount())) {
+            product.markAsSoldOut();
+        }
 
         return null;
     }
