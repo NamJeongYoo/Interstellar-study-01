@@ -23,7 +23,8 @@ public class InvestmentServiceImpl implements InvestmentService {
     @Override
     @Transactional
     public InvestmentResult doInvestment(InvestmentCriteria criteria) {
-        ProductEntity product = productRepository.findByIdWithLock(criteria.getProductId())
+        // findByIdWithLock -> findById, 비관적락 -> 분산락(레디스)으로 변경
+        ProductEntity product = productRepository.findById(criteria.getProductId())
                 .orElseThrow(() -> new IllegalArgumentException("상품이 존재하지 않습니다."));
 
         // 2. 투자 가능 여부 검증
