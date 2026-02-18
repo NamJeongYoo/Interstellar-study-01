@@ -62,8 +62,7 @@ public class ProductEntity {
 
     public void markAsSoldOut() {
         this.status = ProductStatus.SOLD_OUT;
-        // 필요한 경우 마감 시간 기록 등 추가 로직 수행
-        // this.finishedAt = LocalDateTime.now();
+        this.finishedAt = LocalDateTime.now();
     }
 
 }

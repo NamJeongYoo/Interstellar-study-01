@@ -55,6 +55,11 @@ public class InvestmentServiceImpl implements InvestmentService {
             product.markAsSoldOut();
         }
 
-        return null;
+        return InvestmentResult.builder()
+                .userId(investment.getUserId())
+                .productId(investment.getProduct().getProductId())
+                .investingAmount(investment.getInvestingAmount())
+                .investingDate(investment.getInvestedAt())
+                .build();
     }
 }
