@@ -4,6 +4,7 @@ import com.interstellar.interstellarstudy01.investment.domain.InvestmentEntity;
 import com.interstellar.interstellarstudy01.investment.repository.InvestmentRepository;
 import com.interstellar.interstellarstudy01.investment.service.dto.InvestmentCriteria;
 import com.interstellar.interstellarstudy01.investment.service.dto.InvestmentResult;
+import com.interstellar.interstellarstudy01.investment.service.dto.MyInvestmentResult;
 import com.interstellar.interstellarstudy01.product.constant.ProductStatus;
 import com.interstellar.interstellarstudy01.product.domain.ProductEntity;
 import com.interstellar.interstellarstudy01.product.repository.ProductRepository;
@@ -62,5 +63,11 @@ public class InvestmentServiceImpl implements InvestmentService {
                 .investingAmount(investment.getInvestingAmount())
                 .investingDate(investment.getInvestedAt())
                 .build();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public MyInvestmentResult getMyInvestments(Long userId) {
+        return null;
     }
 }

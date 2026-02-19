@@ -18,8 +18,8 @@ public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
     private final ProductMapper productMapper;
 
-    @Transactional(readOnly = true)
     @Override
+    @Transactional(readOnly = true)
     public ProductsSearchResult getProducts(ProductsSearchCriteria criteria) {
         // 1. Pageable 생성
         Pageable pageable = criteria.getPageable();
