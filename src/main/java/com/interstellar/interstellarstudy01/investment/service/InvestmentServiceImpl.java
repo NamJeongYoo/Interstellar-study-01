@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -68,6 +69,21 @@ public class InvestmentServiceImpl implements InvestmentService {
     @Override
     @Transactional(readOnly = true)
     public MyInvestmentResult getMyInvestments(Long userId) {
-        return null;
+        List<InvestmentEntity> investments = investmentRepository.findAllByUserIdWithProduct(userId);
+
+        List<MyInvestmentResult.Investment> investmentList = investments.stream()
+                .map(entity -> MyInvestmentResult.Investment.builder()
+                        .productId(entity.getProduct().getProductId())
+                        .title(entity.getProduct().getTitle())
+                        .totalInvestingAmount(entity.getProduct().getTotalInvestingAmount())
+                        .myInvestingAmount(entity.getInvestingAmount())
+                        .investingDate(entity.getInvestedAt())
+                        .build())
+                .toList();
+
+        return MyInvestmentResult.builder()
+                .totalCount(investmentList.size())
+                .investmentList(investmentList)
+                .build();
     }
 }
