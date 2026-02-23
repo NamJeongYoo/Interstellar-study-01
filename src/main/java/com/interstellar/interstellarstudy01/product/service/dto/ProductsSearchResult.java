@@ -1,26 +1,23 @@
 package com.interstellar.interstellarstudy01.product.service.dto;
 
 import com.interstellar.interstellarstudy01.product.constant.ProductStatus;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
+@Builder
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ProductsSearchResult {
     Integer totalCount;
     List<Product> productList;
 
-    @Builder
-    @AllArgsConstructor
-    @NoArgsConstructor
     @Getter
+    @Builder
+    @AllArgsConstructor(access = AccessLevel.PRIVATE)
+    @NoArgsConstructor(access = AccessLevel.PROTECTED)
     public static class Product {
         Long productId;
         String title;

@@ -1,10 +1,12 @@
 package com.interstellar.interstellarstudy01.product.controller.dto;
 
 import jakarta.validation.constraints.Min;
+import lombok.Builder;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
+@Builder
 public record ProductsSearchRequest(
         @Min(0) Integer page,
         @Min(1) Integer size

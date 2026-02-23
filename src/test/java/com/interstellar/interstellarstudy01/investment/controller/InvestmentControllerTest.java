@@ -54,22 +54,30 @@ class InvestmentControllerTest {
         Long userId = 20160828L;
         LocalDateTime investTime = LocalDateTime.parse("2026-02-12T00:00:00");
 
-        InvestmentRequest mockRequest = new InvestmentRequest(1L, 500000L);
-        InvestmentCriteria mockCriteria = new InvestmentCriteria(userId,1L, 500000L);
+        InvestmentRequest mockRequest = InvestmentRequest.builder()
+                .productId(1L)
+                .investingAmount(500000L)
+                .build();
 
-        InvestmentResult mockResult = new InvestmentResult(
-                userId,
-                1L,
-                500000L,
-                investTime
-        );
+        InvestmentCriteria mockCriteria = InvestmentCriteria.builder()
+                .userId(userId)
+                .productId(1L)
+                .investingAmount(500000L)
+                .build();
 
-        InvestmentResponse mockResponse = new InvestmentResponse(
-                userId,
-                1L,
-                500000L,
-                investTime
-        );
+        InvestmentResult mockResult = InvestmentResult.builder()
+                .userId(userId)
+                .productId(1L)
+                .investingAmount(500000L)
+                .investingDate(investTime)
+                .build();
+
+        InvestmentResponse mockResponse = InvestmentResponse.builder()
+                .userId(userId)
+                .productId(1L)
+                .investingAmount(500000L)
+                .investingDate(investTime)
+                .build();
 
         given(investmentMapper.toInvestmentCriteria(eq(userId), any(InvestmentRequest.class)))
                 .willReturn(mockCriteria);
@@ -106,14 +114,24 @@ class InvestmentControllerTest {
                 )
         );
 
-        MyInvestmentResult mockResult = new MyInvestmentResult(2,
-                List.of(
-                        new MyInvestmentResult.Investment(1L, "개인신용포트폴리오"
-                                , 1000000L, 5000L, investTime),
-                        new MyInvestmentResult.Investment(2L, "부동산포트폴리오"
-                                , 5000000L, 10000L, investTime)
-                )
-        );
+        MyInvestmentResult mockResult = MyInvestmentResult.builder()
+                .totalCount(2)
+                .investmentList(List.of(
+                        MyInvestmentResult.Investment.builder()
+                                .productId(1L)
+                                .title("개인신용포트폴리오")
+                                .totalInvestingAmount(1000000L)
+                                .myInvestingAmount(5000L)
+                                .investingDate(investTime)
+                                .build(),
+                        MyInvestmentResult.Investment.builder()
+                                .productId(2L)
+                                .title("부동산포트폴리오")
+                                .totalInvestingAmount(5000000L)
+                                .myInvestingAmount(10000L)
+                                .investingDate(investTime)
+                                .build()))
+                .build();
 
         // 서비스 호출 시 위 리스트를 반환하도록 모킹
         given(investmentService.getMyInvestments(eq(userId)))

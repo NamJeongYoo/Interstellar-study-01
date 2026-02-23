@@ -1,12 +1,11 @@
 package com.interstellar.interstellarstudy01.investment.service.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
+import lombok.*;
 
 @Getter
-@AllArgsConstructor
 @Builder
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class InvestmentCriteria {
     Long userId;
     Long productId;

@@ -1,13 +1,12 @@
 package com.interstellar.interstellarstudy01.product.service.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
+import lombok.*;
 import org.springframework.data.domain.Pageable;
 
 @Getter
-@AllArgsConstructor
 @Builder
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ProductsSearchCriteria {
     Pageable pageable;
 }

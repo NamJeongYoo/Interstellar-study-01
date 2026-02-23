@@ -21,13 +21,8 @@ public class ProductServiceImpl implements ProductService {
     @Override
     @Transactional(readOnly = true)
     public ProductsSearchResult getProducts(ProductsSearchCriteria criteria) {
-        // 1. Pageable 생성
         Pageable pageable = criteria.getPageable();
-
-        // 2. DB에서 페이징 쿼리 실행 (Limit, Offset 쿼리가 자동으로 나감)
         Page<ProductEntity> productPage = productRepository.findAll(pageable);
-
-        // 3. 엔티티 -> DTO 변환
         return ProductsSearchResult.builder()
                 .totalCount((int) productPage.getTotalElements())
                 .productList(productPage.getContent().stream()
