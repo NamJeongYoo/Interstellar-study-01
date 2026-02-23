@@ -40,17 +40,23 @@ class ProductControllerTest {
     @DisplayName("상품 검색 API - 성공 케이스")
     void getProducts_Success() throws Exception {
         // given: 가짜 데이터 및 매핑 동작 정의
-        ProductsSearchResult mockResult = new ProductsSearchResult(1,
+        ProductsSearchResult mockResult = new ProductsSearchResult(2,
                 List.of(
                         new ProductsSearchResult.Product(2L, "부동산포트폴리오",
                                         LocalDateTime.parse("2026-02-12T00:00:00"), LocalDateTime.parse("2026-12-31T23:59:59"),
-                                        1, ProductStatus.OPEN, 10000L, 5000000L)
+                                        1, ProductStatus.OPEN, 10000L, 5000000L),
+                        new ProductsSearchResult.Product(1L, "개인신용포트폴리오",
+                                LocalDateTime.parse("2026-02-12T00:00:00"), LocalDateTime.parse("2026-12-18T23:59:59"),
+                                1, ProductStatus.SOLD_OUT, 1000000L, 1000000L)
                 ));
-        ProductsSearchResponse mockResponse = new ProductsSearchResponse(1,
+        ProductsSearchResponse mockResponse = new ProductsSearchResponse(2,
                 List.of(
                         new ProductsSearchResponse.Product(2L, "부동산포트폴리오",
                                 LocalDateTime.parse("2026-02-12T00:00:00"), LocalDateTime.parse("2026-12-31T23:59:59"),
-                                1, "OPEN", 10000L, 5000000L)
+                                1, "OPEN", 10000L, 5000000L),
+                        new ProductsSearchResponse.Product(1L, "개인신용포트폴리오",
+                                LocalDateTime.parse("2026-02-12T00:00:00"), LocalDateTime.parse("2026-12-18T23:59:59"),
+                                1, "SOLD_OUT",1000000L, 1000000L)
                 ));
 
         given(productMapper.toProductsSearchCriteria(any(ProductsSearchRequest.class)))
