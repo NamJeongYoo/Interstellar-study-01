@@ -88,7 +88,7 @@ class InvestmentControllerTest {
         given(investmentMapper.toInvestmentResponse(any(InvestmentResult.class)))
                 .willReturn(mockResponse);
 
-        mockMvc.perform(post("/api/v1/invests")
+        mockMvc.perform(post("/api/v1/investments")
                         .header("X-USER-ID", userId)
                         .contentType(MediaType.APPLICATION_JSON) // 또는 APPLICATION_JSON
                         .content(objectMapper.writeValueAsString(mockRequest))) // 객체를 JSON으로 변환
@@ -141,7 +141,7 @@ class InvestmentControllerTest {
                 .willReturn(mockResponse);
 
         // 2. When & Then
-        mockMvc.perform(get("/api/v1/invests/my")
+        mockMvc.perform(get("/api/v1/investments/my")
                         .header("X-USER-ID", userId)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print())

@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @Validated
-@RequestMapping("/api/v1/invests")
+@RequestMapping("/api/v1/investments")
 public class InvestmentController {
 
     private final InvestmentMapper investmentMapper;
