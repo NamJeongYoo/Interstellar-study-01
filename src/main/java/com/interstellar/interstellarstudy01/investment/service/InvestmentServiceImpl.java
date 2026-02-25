@@ -69,7 +69,7 @@ public class InvestmentServiceImpl implements InvestmentService {
     @Override
     @Transactional(readOnly = true)
     public MyInvestmentResult getMyInvestments(Long userId) {
-        List<InvestmentEntity> investments = investmentRepository.findAllByUserIdWithProduct(userId);
+        List<InvestmentEntity> investments = investmentRepository.findAllByUserId(userId);
 
         List<MyInvestmentResult.Investment> investmentList = investments.stream()
                 .map(entity -> MyInvestmentResult.Investment.builder()
